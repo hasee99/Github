@@ -1,42 +1,29 @@
 pipeline {
     agent any
+    options {
+        // Timeout counter starts AFTER agent is allocated
+        timeout(time: 5, unit: 'SECONDS')
+    }
+
     stages {
         stage('Build') {
             steps {
-             
                 echo 'Building..'
             }
         }
-         stage('Build1') {
+        stage('Test') {
             steps {
-                echo 'Building..'
+                echo 'Testing..'
             }
         }
-         stage('Build2') {
+        stage('Deploy') {
             steps {
-                echo 'Building..'
-            }
-        }
-         stage('Build3') {
-            steps {
-                echo 'Building..'
+                echo 'Deploying....'
             }
         }
     }
-    post { 
-        aborted { 
-            echo 'ABORTED'
+     post { 
+        always { 
+            echo 'I will always say Hello again!'
         }
-         success { 
-            echo 'SUCCESS'
-        }
-         failure { 
-            echo 'FAILURE'
-        }
-        changed { 
-            echo 'FAILURE'
-        }
-    }
-    
-}
 
