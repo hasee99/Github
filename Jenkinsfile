@@ -1,10 +1,5 @@
 pipeline {
     agent any
- options {
-        // Timeout counter starts AFTER agent is allocated
-    timestamps() 
-        timeout(time: 60, unit: 'SECONDS')
-    }
     stages {
         stage('Build') {
             steps {
