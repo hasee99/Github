@@ -2,7 +2,7 @@ pipeline {
     agent any
     options {
         // Timeout counter starts AFTER agent is allocated
-        timeout(time: 5, unit: 'SECONDS')
+        timeout(time: 10, unit: 'SECONDS')
     }
     stages {
         stage('Build') {
@@ -19,11 +19,6 @@ pipeline {
             steps {
                 echo 'Deploying....'
             }
-        }
-    }
-     post { 
-        always { 
-            echo 'I will always say Hello again!'
         }
     }
 }
