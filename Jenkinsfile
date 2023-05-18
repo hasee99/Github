@@ -1,24 +1,47 @@
 pipeline {
-    agent any
-    options {
+    agent {label 'LOCAL'}
+ options {
         // Timeout counter starts AFTER agent is allocated
-        timeout(time: 10, unit: 'SECONDS')
+    timestamps() 
+        timeout(time: 60, unit: 'SECONDS')
     }
     stages {
         stage('Build') {
             steps {
+             
                 echo 'Building..'
             }
         }
-        stage('Test') {
+         stage('Build1') {
             steps {
-                echo 'Testing..'
+                echo 'Building..'
             }
         }
-        stage('Deploy') {
+         stage('Build2') {
             steps {
-                echo 'Deploying....'
+                echo 'Building..'
+            }
+        }
+         stage('Build3') {
+            steps {
+                echo 'Building..'
             }
         }
     }
+    post { 
+        aborted { 
+            echo 'ABORTED'
+        }
+         success { 
+            echo 'SUCCESS'
+        }
+         failure { 
+            echo 'FAILURE'
+        }
+        changed { 
+            echo 'FAILURE'
+        }
+    }
+    
+}
 
